@@ -1,0 +1,18 @@
+[
+    {
+        "game_pct": 0.47677,
+        "season": "2019-20",
+        "home_top3_pct": 0.32039,
+        "home_bottom_pct": 0.26214,
+        "away_top3_pct": 0.29126,
+        "away_bottom_pct": 0.12621
+    },
+    {
+        "game_pct": 0.52323,
+        "season": "2019-20",
+        "home_top3_pct": 0.24038,
+        "home_bottom_pct": 0.15385,
+        "away_top3_pct": 0.23301,
+        "away_bottom_pct": 0.375
+    }
+]
