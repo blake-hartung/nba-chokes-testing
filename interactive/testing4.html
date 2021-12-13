@@ -1,4 +1,41 @@
-{
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Mosaic Plot</title>
+    <script src="https://d3js.org/d3.v7.js"></script>
+    <style>
+        svg {
+            margin-left:auto;
+            margin-right:auto;
+            display:block;
+            }
+    </style>
+  </head>
+
+  <body>
+    <div text-align="center">
+    <select id="selectButton"></select>
+    <script>
+
+  // width and height
+  var w = 500;
+  var h = 400;
+  var margin = {top: 25, right: 0, bottom: 25, left: 25}
+  var innerWidth = w - margin.left - margin.right;
+  var innerHeright = h - margin.top - margin.bottom;
+  var games = ['MIA @ BOS', 'MIA @ BOS 2', 'BOS @ TOR',
+     'LAC @ DAL', 'LAC @ DEN', 'DEN @ LAC', 'HOU @ OKC',
+     'MIL @ MIA', 'ATL @ PHI', 'PHI @ ATL', 'DEN @ POR',
+     'UTA @ LAC', 'MIL @ BKN', 'IND @ BOS', 'POR @ DEN',
+     'SAS @ DEN', 'GSW @ POR', 'GSW @ POR 2', 'POR @ GSW',
+     'LAC @ GSW', 'MIL @ TOR', 'TOR @ MIL', 'OKC @ POR',
+     'PHI @ BOS', 'CLE @ TOR', 'CLE @ IND', 'GSW @ HOU',
+     'HOU @ GSW', 'PHI @ MIA', 'UTA @ OKC']
+
+  // original data
+  var dataset = {
     "MIA @ BOS": [
         {
             "game_pct": 0.47677,
@@ -539,4 +576,131 @@
             "away_bottom_pct": 0.13483
         }
     ]
-}
+};
+
+  // set up stack method
+  var stack = d3.stack()
+    .keys([ "home_top3_pct", "home_bottom_pct", "away_top3_pct", "away_bottom_pct" ]);
+
+  // data, stacked
+  var series = stack(dataset["MIA @ BOS"]);
+
+  // set up scales
+  var xScale = d3.scaleBand()
+    .domain(d3.range(dataset["MIA @ BOS"].length))
+    .range([0, innerWidth])
+    .paddingInner(0.02);
+
+  var yScale = d3.scaleLinear()
+    .domain([0,	1])
+    .range([350, 0]);
+  
+  var xAxis = d3.axisBottom()
+    .scale(xScale)
+    .tickFormat(function (d){ return ["Before", "After"][d]});
+  
+  var yAxis = d3.axisLeft()
+    .scale(yScale);
+
+  d3.select("#selectButton")
+    .selectAll("myOptions")
+    .data(games)
+  .enter()
+    .append("option")
+    .text(function (d) {return d;})
+    .attr("value", function (d) {return d;})
+
+  // create consatnt selection of bar chart colors
+  var colors = d3.scaleOrdinal(['royalblue', 'lightskyblue', 'maroon', 'firebrick']);
+
+  // create SVG element
+  var svg = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h)
+    .attr("align", "center")
+    .attr("fill", "ivory");
+
+  // add a group for each row of data
+  var groups = svg.selectAll("g")
+    .data(series)
+    .enter()
+    .append("g")
+    .attr("transform", `translate (${margin.left}, ${margin.top})`)
+    .attr("id", "category")
+    .style("fill", (d, i) => colors(i));
+
+  // add a rect for each data value
+  var rects = groups.selectAll("rect")
+    .data(d => d)
+    .enter()
+    .append("rect")
+    .attr("x", (d, i) => xScale(i))
+    .attr("y", d => yScale(d[1]))
+    .attr("height", d => (yScale(d[0]) - yScale(d[1])))
+    .attr("width", (d, i) => xScale.bandwidth());
+  
+  // add axes
+  svg.append("g")
+    .attr("class", "xAxis")
+    .attr("transform", `translate (${margin.left}, ${h - margin.bottom})`)
+    .call(xAxis);
+  
+  svg.append("g")
+    .attr("class", "yAxis")
+    .attr("transform", `translate (${margin.left}, ${margin.top})`)
+    .call(yAxis);
+
+ // need to add an update function here on select change
+  function update(selectedGame) {
+      var datasetGame = dataset[selectedGame];
+      console.log(datasetGame);
+     
+      var stack = d3.stack()
+       .keys([ "home_top3_pct", "home_bottom_pct", "away_top3_pct", "away_bottom_pct" ]);
+      
+      var gameSeries = stack(datasetGame);
+
+
+
+      d3.select("body")
+      .selectAll("#category")
+      .remove();
+
+      var groups = d3.select("svg")
+        .selectAll("#category")
+        .data(gameSeries)
+        .enter()
+        .append("g")
+        .attr("transform", `translate (${margin.left}, ${margin.top})`)
+        .attr("id", "category")
+        .style("fill", (d, i) => colors(i));
+
+      console.log(groups.enter())
+    
+      var rects = groups.selectAll("rect")
+        .data(d => d)
+        .enter()
+        .append("rect")
+        .attr("x", 250)
+        .attr("y", 200)
+        .attr("height", 100)
+        .attr("width", 10)
+        .transition()
+        .duration(2000)
+        .attr("x", (d, i) => xScale(i))
+        .attr("y", d => yScale(d[1]))
+        .attr("height", d => (yScale(d[0]) - yScale(d[1])))
+        .attr("width", (d, i) => xScale.bandwidth());
+  
+    }
+    //  d => (yScale(d[2]) - yScale(d[3]))
+    d3.select("#selectButton").on("change", function(d) {
+        var selectedGame = d3.select(this).property("value")
+        console.log(selectedGame)
+        update(selectedGame)
+    })
+    </script>
+  </div>
+  </body>
+</html>

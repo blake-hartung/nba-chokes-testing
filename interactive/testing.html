@@ -1,119 +1,107 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>Marimekko Chart</title>
-<style>
+<html lang="en">
 
-body {
-  font: 10px sans-serif;
-}
+  <head>
+    <meta charset="utf-8">
+    <title><Stacked Bar Chart></title>
+    <script src="https://d3js.org/d3.v7.js"></script>
+  </head>
 
-rect {
-  stroke: #000;
-}
+  <body>
+    <script>
 
-svg {
-  shape-rendering: crispEdges;
-}
+  // width and height
+  var w = 500;
+  var h = 400;
+  var margin = {top: 25, right: 0, bottom: 25, left: 25}
+  var innerWidth = w - margin.left - margin.right;
+  var innerHeright = h - margin.top - margin.bottom;
 
-</style>
-<body>
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script>
+  // original data
+  var dataset = [
+    {
+        "game_pct0": 0,
+        "game_pct1": 0.47677,
+        "season": "2019-20",
+        "home_top3_pct": 0.32039,
+        "home_bottom_pct": 0.26214,
+        "away_top3_pct": 0.29126,
+        "away_bottom_pct": 0.12621
+    },
+    {
+        "game_pct0": 0.47678,
+        "game_pct1": 0.52322,
+        "season": "2019-20",
+        "home_top3_pct": 0.24038,
+        "home_bottom_pct": 0.15385,
+        "away_top3_pct": 0.23301,
+        "away_bottom_pct": 0.375
+    }
+];
 
-var width = 960,
-    height = 500,
-    margin = 20;
+  // set up stack method
+  var stack = d3.stack()
+    .keys([ "home_top3_pct", "home_bottom_pct", "away_top3_pct", "away_bottom_pct" ]);
 
-var x = d3.scale.linear()
-    .range([0, width - 3 * margin]);
+  // data, stacked
+  var series = stack(dataset);
 
-var y = d3.scale.linear()
-    .range([0, height - 2 * margin]);
+  // set up scales
+  var xScale = d3.scaleBand()
+    .domain(d3.range(dataset.length))
+    .range([0, innerWidth])
+    .paddingInner(0.05);
 
-var z = d3.scale.category10();
+  var yScale = d3.scaleLinear()
+    .domain([0,	1])
+    .range([350, 0]);
+  
+  var xAxis = d3.axisBottom()
+    .scale(xScale);
+  
+  var yAxis = d3.axisLeft()
+    .scale(yScale);
 
-var n = d3.format(",d"),
-    p = d3.format("%");
+  // use one of the built-in d3 color scales
+  var colors = d3.scaleOrdinal(['royalblue', 'lightskyblue', 'maroon', 'firebrick']);
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-  .append("g")
-    .attr("transform", "translate(" + 2 * margin + "," + margin + ")");
+  // create SVG element
+  var svg = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h)
+    .attr("fill", "ivory");
 
-d3.json("https://raw.githubusercontent.com/blake-hartung/nba-chokes-testing/main/interactive/single_game.json", function(error, data) {
-  if (error) throw error;
+  // add a group for each row of data
+  var groups = svg.selectAll("g")
+    .data(series)
+    .enter()
+    .append("g")
+    .attr("transform", `translate (${margin.left}, ${margin.top})`)
+    .style("fill", (d, i) => colors(i));
 
-  var offset = 0;
-
-  // Nest values by segment. We assume each segment+market is unique.
-  var segments = d3.nest()
-      .key(function(d) { return d.Player; })
-      .entries(data);
-
-  // Compute the total sum, the per-segment sum, and the per-market offset.
-  // You can use reduce rather than reduceRight to reverse the ordering.
-  // We also record a reference to the parent segment for each market.
-  var sum = segments.reduce(function(v, p) {
-    return (p.offset = v) + (p.sum = p.values.reduceRight(function(v, d) {
-      d.parent = p;
-      return (d.offset = v) + d.Points;
-    }, 0));
-  }, 0);
-
-  // Add x-axis ticks.
-  var xtick = svg.selectAll(".x")
-      .data(x.ticks(10))
-    .enter().append("g")
-      .attr("class", "x")
-      .attr("transform", function(d) { return "translate(" + x(d) + "," + y(1) + ")"; });
-
-  xtick.append("line")
-      .attr("y2", 6)
-      .style("stroke", "#000");
-
-  xtick.append("text")
-      .attr("y", 8)
-      .attr("text-anchor", "middle")
-      .attr("dy", ".71em")
-      .text(p);
-
-  // Add y-axis ticks.
-  var ytick = svg.selectAll(".y")
-      .data(y.ticks(10))
-    .enter().append("g")
-      .attr("class", "y")
-      .attr("transform", function(d) { return "translate(0," + y(1 - d) + ")"; });
-
-  ytick.append("line")
-      .attr("x1", -6)
-      .style("stroke", "#000");
-
-  ytick.append("text")
-      .attr("x", -8)
-      .attr("text-anchor", "end")
-      .attr("dy", ".35em")
-      .text(p);
-
-  // Add a group for each segment.
-  var segments = svg.selectAll(".segment")
-      .data(segments)
-    .enter().append("g")
-      .attr("class", "segment")
-      .attr("xlink:title", function(d) { return d.key; })
-      .attr("transform", function(d) { return "translate(" + x(d.offset / sum) + ")"; });
-
-  // Add a rect for each market.
-  var markets = segments.selectAll(".market")
-      .data(function(d) { return d.values; })
-    .enter().append("a")
-      .attr("class", "market")
-      .attr("xlink:title", function(d) { return d.market + " " + d.parent.key + ": " + n(d.value); })
+  // add a rect for each data value
+  var rects = groups.selectAll("rect")
+    .data(d => d)
+    .enter()
     .append("rect")
-      .attr("y", function(d) { return y(d.offset / d.parent.sum); })
-      .attr("height", function(d) { return y(d.value / d.parent.sum); })
-      .attr("width", function(d) { return x(d.parent.sum / sum); })
-      .style("fill", function(d) { return z(d.market); });
-});
+    .attr("x", (d, i) => xScale(i))
+    .attr("y", d => yScale(d[1]))
+    .attr("height", d => (yScale(d[0]) - yScale(d[1])))
+    .attr("width", (d, i) => xScale.bandwidth());
+  
+  // add axes
+  svg.append("g")
+    .attr("class", "xAxis")
+    .attr("transform", `translate (${margin.left}, ${h - margin.bottom})`)
+    .call(xAxis);
+  
+  svg.append("g")
+    .attr("class", "yAxis")
+    .attr("transform", `translate (${margin.left}, ${margin.top})`)
+    .call(yAxis);
 
-</script>
+
+    </script>
+  </body>
+</html>

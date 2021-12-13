@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title><Stacked Bar Chart></title>
+    <script src="https://d3js.org/d3.v7.js"></script>
+  </head>
+
+  <body>
+    <select id="selectButton"></select>
+    <script>
+
+  // width and height
+  var w = 500;
+  var h = 400;
+  var margin = {top: 25, right: 0, bottom: 25, left: 25}
+  var innerWidth = w - margin.left - margin.right;
+  var innerHeright = h - margin.top - margin.bottom;
+  var games = ["MIA @ BOS", "MIA @ BOS 2", "BOS @ TOR"]
+
+  // original data
+  var dataset = {
+    "MIA @ BOS": [
+        {
+            "game_pct": 0.47677,
+            "season": "2019-20",
+            "home_top3_pct": 0.32039,
+            "home_bottom_pct": 0.26214,
+            "away_top3_pct": 0.29126,
+            "away_bottom_pct": 0.12621
+        },
+        {
+            "game_pct": 0.52323,
+            "season": "2019-20",
+            "home_top3_pct": 0.24038,
+            "home_bottom_pct": 0.15385,
+            "away_top3_pct": 0.23301,
+            "away_bottom_pct": 0.375
+        }
+    ],
+    "MIA @ BOS 2": [
+        {
+            "game_pct": 0.68374,
+            "season": "2019-20",
+            "home_top3_pct": 0.37013,
+            "home_bottom_pct": 0.16883,
+            "away_top3_pct": 0.29221,
+            "away_bottom_pct": 0.16883
+        },
+        {
+            "game_pct": 0.31626,
+            "season": "2019-20",
+            "home_top3_pct": 0.24,
+            "home_bottom_pct": 0.14667,
+            "away_top3_pct": 0.16883,
+            "away_bottom_pct": 0.26667
+        }
+    ],
+    "BOS @ TOR": [
+        {
+            "game_pct": 0.69024,
+            "season": "2019-20",
+            "home_top3_pct": 0.33803,
+            "home_bottom_pct": 0.21127,
+            "away_top3_pct": 0.3662,
+            "away_bottom_pct": 0.08451
+        },
+        {
+            "game_pct": 0.30976,
+            "season": "2019-20",
+            "home_top3_pct": 0.14035,
+            "home_bottom_pct": 0.22807,
+            "away_top3_pct": 0.06338,
+            "away_bottom_pct": 0.47368
+        }
+    ]
+  };
+
+  // set up stack method
+  var stack = d3.stack()
+    .keys([ "home_top3_pct", "home_bottom_pct", "away_top3_pct", "away_bottom_pct" ]);
+
+  // data, stacked
+  var series = stack(dataset["MIA @ BOS"]);
+
+  // set up scales
+  var xScale = d3.scaleBand()
+    .domain(d3.range(dataset["MIA @ BOS"].length))
+    .range([0, innerWidth])
+    .paddingInner(0.05);
+
+  var yScale = d3.scaleLinear()
+    .domain([0,	1])
+    .range([350, 0]);
+  
+  var xAxis = d3.axisBottom()
+    .scale(xScale);
+  
+  var yAxis = d3.axisLeft()
+    .scale(yScale);
+
+  d3.select("#selectButton")
+    .selectAll("myOptions")
+    .data(games)
+  .enter()
+    .append("option")
+    .text(function (d) {return d;})
+    .attr("value", function (d) {return d;})
+
+  // create consatnt selection of bar chart colors
+  var colors = d3.scaleOrdinal(['royalblue', 'lightskyblue', 'maroon', 'firebrick']);
+
+  // create SVG element
+  var svg = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h)
+    .attr("fill", "ivory");
+
+  // add a group for each row of data
+  var groups = svg.selectAll("g")
+    .data(series)
+    .enter()
+    .append("g")
+    .attr("transform", `translate (${margin.left}, ${margin.top})`)
+    .style("fill", (d, i) => colors(i));
+
+  // add a rect for each data value
+  var rects = groups.selectAll("rect")
+    .data(d => d)
+    .enter()
+    .append("rect")
+    .attr("x", (d, i) => xScale(i))
+    .attr("y", d => yScale(d[1]))
+    .attr("height", d => (yScale(d[0]) - yScale(d[1])))
+    .attr("width", (d, i) => xScale.bandwidth());
+  
+  // add axes
+  svg.append("g")
+    .attr("class", "xAxis")
+    .attr("transform", `translate (${margin.left}, ${h - margin.bottom})`)
+    .call(xAxis);
+  
+  svg.append("g")
+    .attr("class", "yAxis")
+    .attr("transform", `translate (${margin.left}, ${margin.top})`)
+    .call(yAxis);
+
+ // need to add an update function here on select change
+  function update(selectedGame) {
+      var datasetGame = dataset[selectedGame];
+      console.log(datasetGame);
+     
+      var stack = d3.stack()
+       .keys([ "home_top3_pct", "home_bottom_pct", "away_top3_pct", "away_bottom_pct" ]);
+      
+      var gameSeries = stack(datasetGame);
+
+      d3.select("body").selectAll("g").selectAll("rect").transition().duration(2000).attr("x", (d, i) => xScale(i) + 600).remove()
+
+      var groups = d3.select("body").selectAll("g")
+        .data(gameSeries)
+        .enter()
+        .append("g")
+        .attr("transform", `translate (${margin.left}, ${margin.top})`)
+        .style("fill", (d, i) => colors(i));
+    
+    
+      var rects = groups.selectAll("rect")
+       .data(d => d)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => xScale(i))
+       .attr("y", d => yScale(d[1]))
+       .attr("height", d => (yScale(d[0]) - yScale(d[1])))
+       .attr("width", (d, i) => xScale.bandwidth());
+  
+    }
+
+    d3.select("#selectButton").on("change", function(d) {
+        var selectedGame = d3.select(this).property("value")
+        console.log(selectedGame)
+        update(selectedGame)
+    })
+    </script>
+  </body>
+</html>
