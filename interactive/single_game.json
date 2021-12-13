@@ -1,242 +1,240 @@
-{
-    "MIA vs PHI": [
-        {
-            "Player": "Johnson",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 9.0
-        },
-        {
-            "Player": "Dragic",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 20.0
-        },
-        {
-            "Player": "Richardson",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 8.0
-        },
-        {
-            "Player": "Ellington",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 10.0
-        },
-        {
-            "Player": "Wade",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 11.0
-        },
-        {
-            "Player": "Adebayo",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 2.0
-        },
-        {
-            "Player": "Whiteside",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 11.0
-        },
-        {
-            "Player": "Winslow",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 5.0
-        },
-        {
-            "Player": "Saric",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 9.0
-        },
-        {
-            "Player": "Embiid",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 8.0
-        },
-        {
-            "Player": "Redick",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 16.0
-        },
-        {
-            "Player": "Covington",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 8.0
-        },
-        {
-            "Player": "Johnson",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 8.0
-        },
-        {
-            "Player": "Simmons",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 6.0
-        },
-        {
-            "Player": "Ilyasova",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 2.0
-        },
-        {
-            "Player": "Belinelli",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 5.0
-        },
-        {
-            "Player": "McConnell",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "Before Choke/Comeback",
-            "Points": 2.0
-        },
-        {
-            "Player": "Johnson",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 6.0
-        },
-        {
-            "Player": "Dragic",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 0.0
-        },
-        {
-            "Player": "Richardson",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 2.0
-        },
-        {
-            "Player": "Ellington",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 0.0
-        },
-        {
-            "Player": "Wade",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 14.0
-        },
-        {
-            "Player": "Adebayo",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 0.0
-        },
-        {
-            "Player": "Whiteside",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 2.0
-        },
-        {
-            "Player": "Winslow",
-            "Team": "MIA",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 2.0
-        },
-        {
-            "Player": "Saric",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 2.0
-        },
-        {
-            "Player": "Embiid",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 6.0
-        },
-        {
-            "Player": "Redick",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 8.0
-        },
-        {
-            "Player": "Covington",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 2.0
-        },
-        {
-            "Player": "Johnson",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 0.0
-        },
-        {
-            "Player": "Simmons",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 11.0
-        },
-        {
-            "Player": "Ilyasova",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 8.0
-        },
-        {
-            "Player": "Belinelli",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 5.0
-        },
-        {
-            "Player": "McConnell",
-            "Team": "PHI",
-            "Season": "2017-18",
-            "Time": "After Choke/Comeback",
-            "Points": 0.0
-        }
-    ]
-}
+[
+    {
+        "Player": "Johnson",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 9.0
+    },
+    {
+        "Player": "Dragic",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 20.0
+    },
+    {
+        "Player": "Richardson",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 8.0
+    },
+    {
+        "Player": "Ellington",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 10.0
+    },
+    {
+        "Player": "Wade",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 11.0
+    },
+    {
+        "Player": "Adebayo",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 2.0
+    },
+    {
+        "Player": "Whiteside",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 11.0
+    },
+    {
+        "Player": "Winslow",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 5.0
+    },
+    {
+        "Player": "Saric",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 9.0
+    },
+    {
+        "Player": "Embiid",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 8.0
+    },
+    {
+        "Player": "Redick",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 16.0
+    },
+    {
+        "Player": "Covington",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 8.0
+    },
+    {
+        "Player": "Johnson",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 8.0
+    },
+    {
+        "Player": "Simmons",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 6.0
+    },
+    {
+        "Player": "Ilyasova",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 2.0
+    },
+    {
+        "Player": "Belinelli",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 5.0
+    },
+    {
+        "Player": "McConnell",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "Before Choke/Comeback",
+        "Points": 2.0
+    },
+    {
+        "Player": "Johnson",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 6.0
+    },
+    {
+        "Player": "Dragic",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 0.0
+    },
+    {
+        "Player": "Richardson",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 2.0
+    },
+    {
+        "Player": "Ellington",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 0.0
+    },
+    {
+        "Player": "Wade",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 14.0
+    },
+    {
+        "Player": "Adebayo",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 0.0
+    },
+    {
+        "Player": "Whiteside",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 2.0
+    },
+    {
+        "Player": "Winslow",
+        "Team": "MIA",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 2.0
+    },
+    {
+        "Player": "Saric",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 2.0
+    },
+    {
+        "Player": "Embiid",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 6.0
+    },
+    {
+        "Player": "Redick",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 8.0
+    },
+    {
+        "Player": "Covington",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 2.0
+    },
+    {
+        "Player": "Johnson",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 0.0
+    },
+    {
+        "Player": "Simmons",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 11.0
+    },
+    {
+        "Player": "Ilyasova",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 8.0
+    },
+    {
+        "Player": "Belinelli",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 5.0
+    },
+    {
+        "Player": "McConnell",
+        "Team": "PHI",
+        "Season": "2017-18",
+        "Time": "After Choke/Comeback",
+        "Points": 0.0
+    }
+]
